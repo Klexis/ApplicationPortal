@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for permission in permissions %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ permission.parent.author }}</a>
+              <small class="text-muted">{{ permission.parent.date_applied|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'permission-detail' permission.id %}">{{ permission.parent.title }}</a></h2>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}l>

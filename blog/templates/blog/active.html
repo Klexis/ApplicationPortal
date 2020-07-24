@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for application in applications %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ application.reciever1 }}</a>
+              <small class="text-muted">{{ application.date_applied|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'application-detail' application.id %}">{{ application.title }}</a></h2>
+            <p class="article-content">{{ application.status }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}l>
