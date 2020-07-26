@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 
 
-class ApplicationListView(ListView, LoginRequiredMixin):
+class ApplicationListView(LoginRequiredMixin, ListView):
     model = Application
     template_name = 'blog/active.html'
     context_object_name = 'applications'
@@ -23,7 +23,7 @@ class ApplicationListView(ListView, LoginRequiredMixin):
     def get_queryset(self):
         return Application.objects.filter(author=self.request.user, done=False)
 
-class ApplicationHistoryListView(ListView, LoginRequiredMixin):
+class ApplicationHistoryListView(LoginRequiredMixin, ListView):
     model = Application
     template_name = 'blog/active.html'
     context_object_name = 'applications'
@@ -65,7 +65,7 @@ class ApplicationCreateView(LoginRequiredMixin, CreateView):
         self.object.save()
         return reverse('active-list')
 
-class PermissionListView(ListView, LoginRequiredMixin):
+class PermissionListView(LoginRequiredMixin, ListView):
     model = Permission
     template_name = 'blog/pending.html'
     context_object_name = 'permissions'
@@ -79,7 +79,7 @@ class PermissionListView(ListView, LoginRequiredMixin):
         return Permission.objects.filter(receiver=self.request.user, done=False)
 
 
-class PermissionHistoryListView(ListView, LoginRequiredMixin):
+class PermissionHistoryListView(LoginRequiredMixin, ListView):
         model = Permission
         template_name = 'blog/pending.html'
         context_object_name = 'permissions'
